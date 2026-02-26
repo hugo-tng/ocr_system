@@ -175,13 +175,11 @@ Sử dụng notebook `source/TrainingModel.ipynb`:
 ```
 Input Image (32x128)
     ↓
-CNN Backbone (ResNet/VGG)
+CNN Backbone (ResNet34) + Positional Encoding
     ↓
 Feature Maps
     ↓
-Flattening + RNN (LSTM/GRU)
-    ↓
-Attention Layer
+Transformer Decoder (Self-Attention & Cross-Attention)
     ↓
 Output Sequence (Text)
 ```
@@ -264,12 +262,12 @@ Notebook `test_infer.ipynb` là một giải pháp hoàn chỉnh kết hợp:
 
 ## Hình Ảnh Minh Họa
 
-### Kết Quả Phát Hiện Văn Bản (CRAFT)
+### Kết Quả Phát Hiện và nhận dạng văn bản 1
 
 ![Text Detection Result](images/output_1.png)
 _Ví dụ kết quả phát hiện vị trí các vùng chứa text trong ảnh sử dụng mô hình CRAFT_
 
-### Kết Quả Nhận Dạng Văn Bản (OCR)
+### Kết Quả Phát Hiện và nhận dạng văn bản 2
 
 ![OCR Recognition Result](images/output_2.png)
 _Ví dụ kết quả nhận dạng nội dung văn bản từ các vùng được phát hiện_
@@ -288,9 +286,9 @@ _Ví dụ kết quả nhận dạng nội dung văn bản từ các vùng đư�
 - Mô hình phát hiện text thời gian thực
 - Sử dụng phương pháp binarization có thể vi phân
 
-### 3. OCR Model (Custom CNN-RNN)
+### 3. OCR Model (Custom CNN-Transformer)
 
-- **Kiến trúc**: Encoder (ResNet/VGG) + Decoder (LSTM/GRU) + Attention
+- **Kiến trúc**: Encoder (ResNet34) + Transformer Decoder (Multi-head Attention)
 - **Hỗ trợ**: Tiếng Anh, Tiếng Việt
 - **Input**: Ảnh word (32x128)
 - **Output**: Chuỗi ký tự
@@ -312,22 +310,6 @@ _Ví dụ kết quả nhận dạng nội dung văn bản từ các vùng đư�
 - **Character Error Rate (CER)**: Tỉ lệ lỗi ở cấp ký tự
 - **Word Error Rate (WER)**: Tỉ lệ lỗi ở cấp từ
 - **Accuracy**: Tỉ lệ nhận dạng chính xác
-
-### Kết Quả Mẫu
-
-```
-IIIT5K Dataset:
-- Character Accuracy: ~90%
-- Word Accuracy: ~85%
-
-VIETOCR Dataset:
-- Character Accuracy: ~88%
-- Word Accuracy: ~82%
-
-Vietnamese Custom Dataset:
-- Character Accuracy: ~92%
-- Word Accuracy: ~87%
-```
 
 ---
 
