@@ -1,0 +1,7 @@
+# Module specific
+CRAFT/
+data/
+DBNet/
+
+# model checkpoints
+model/*.pth
